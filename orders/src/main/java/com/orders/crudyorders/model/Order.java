@@ -1,9 +1,6 @@
 package com.orders.crudyorders.model;
 
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 public class Order
 {
@@ -14,5 +11,14 @@ public class Order
 
     private double ordamount, advanceamount;
 
+    @OneToMany
+    @JoinColumn(name = "customer", nullable = false)
+    private long custcode;
+    // this is a long foreign key
 
+    @OneToMany
+    @JoinColumn(name = "agent", nullable = false)
+    private long agentcode;
+
+    private String orddescription;
 }

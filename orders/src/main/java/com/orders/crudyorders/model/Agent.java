@@ -21,4 +21,11 @@ public class Agent
                 cascade = CascadeType.ALL,
                 orphanRemoval = true)
     private ArrayList<Customer> customers = new ArrayList<>();
+    // this is for the long foreign key in customers?
+
+    @OneToMany(mappedBy = "agent",
+                cascade = CascadeType.ALL,
+                orphanRemoval = true)
+    private ArrayList<Order> orders = new ArrayList<>();
+
 }
