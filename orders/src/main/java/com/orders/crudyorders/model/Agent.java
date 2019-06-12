@@ -28,6 +28,8 @@ public class Agent
                 orphanRemoval = true)
     private ArrayList<Order> orders = new ArrayList<>();
 
+    public Agent(){}
+
     public Agent(String agentname, String workingarea, double comission, String phone, String country) {
         this.agentname = agentname;
         this.workingarea = workingarea;
