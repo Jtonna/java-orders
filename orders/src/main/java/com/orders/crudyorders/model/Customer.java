@@ -17,7 +17,8 @@ public class Customer
     private double openingamt, recieveamt, paymentamt, outstandingamt;
     private String phone;
 
-    @OneToMany(name = "agentcode", nullable = false)
+    @OneToMany
+    @JoinColumn(name = "agentcode", nullable = false)
     // connects this to the agent model
     private long agentcode;
 
