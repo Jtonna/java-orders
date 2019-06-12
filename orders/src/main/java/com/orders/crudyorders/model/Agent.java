@@ -1,6 +1,7 @@
 package com.orders.crudyorders.model;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 
 @Entity
 @Table(name = "agent")
@@ -16,6 +17,8 @@ public class Agent
     private double comission;
     private String phone, country;
 
-
-
+    @OneToMany(mappedBy = "agent",
+                cascade = CascadeType.ALL,
+                orphanRemoval = true)
+    private ArrayList<Customer> customers = new ArrayList<>();
 }
