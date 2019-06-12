@@ -9,11 +9,13 @@ public class Agent
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     // setting strategy to this lets the database control how its set
+    @Column(nullable = false)
     private long agentcode;
 
     private String agentname, workingarea;
     private double comission;
     private String phone, country;
 
-    
+
+
 }
