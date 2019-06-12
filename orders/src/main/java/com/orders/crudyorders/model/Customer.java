@@ -7,7 +7,8 @@ import javax.persistence.*;
 public class Customer
 {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(nullable = false)
     private long custcode;
 
     @Column(nullable = false)
@@ -21,5 +22,6 @@ public class Customer
     @JoinColumn(name = "agentcode", nullable = false)
     // connects this to the agent model
     private long agentcode;
+
 
 }
