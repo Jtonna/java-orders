@@ -20,7 +20,15 @@ public class CustomerServiceImpl implements CustomerService{
 
     @Override
     public Customer save(Customer customer) {
-        return null;
+        Customer newCustomer = new Customer();
+
+        newCustomer.setCustname(customer.getCustname());
+        newCustomer.setCustcity(customer.getCustcity());
+        newCustomer.setCustcountry(customer.getCustcountry());
+        //newCustomer.setCustcode(customer.getCustcode());
+        // we dont want this because the server sets the id for us
+
+        return customerrepos.save(newCustomer);
     }
 
     @Override
@@ -30,7 +38,13 @@ public class CustomerServiceImpl implements CustomerService{
 
     @Override
     public ArrayList<Customer> findAll() {
-        return null;
+        ArrayList<Customer> customers = new ArrayList<>();
+        customerrepos.findAll().iterator().forEachRemaining(customers::add);
+
+        for (Customer c: customers){
+            c.setOrder(orderrepos.findAllByCustomer(c));
+        }
+        return customers;
     }
 
     @Override
