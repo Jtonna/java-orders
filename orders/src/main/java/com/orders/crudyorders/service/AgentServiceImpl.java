@@ -16,8 +16,8 @@ public class AgentServiceImpl implements AgentService {
 
     @Autowired
     private AgentsRepository agentrepos;
-    
-    // below is generated and edited code. generated methods.
+
+    // generated methods.
 
     @Override
     public Customer save(Agent agent) {
