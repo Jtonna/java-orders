@@ -26,7 +26,9 @@ public class AgentServiceImpl implements AgentService {
 
     @Override
     public ArrayList<Agent> findAll() {
-        return null;
+        ArrayList<Agent> AgentOverrideList = new ArrayList<>();
+        agentrepos.findAll().iterator().forEachRemaining(AgentOverrideList::add);
+        return AgentOverrideList;
     }
 
     @Override
