@@ -5,6 +5,7 @@ import com.orders.crudyorders.model.Customer;
 import com.orders.crudyorders.repos.CustomersRepository;
 import com.orders.crudyorders.repos.OrdersRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 
@@ -18,18 +19,14 @@ public class CustomerServiceImpl implements CustomerService{
 
     // generated methods
 
+    @Transactional
     @Override
-    public Customer save(Customer customer) {
-        Customer newCustomer = new Customer();
-
-        newCustomer.setCustname(customer.getCustname());
-        newCustomer.setCustcity(customer.getCustcity());
-        newCustomer.setCustcountry(customer.getCustcountry());
-        //newCustomer.setCustcode(customer.getCustcode());
-        // we dont want this because the server sets the id for us
-
-        return customerrepos.save(newCustomer);
+    public Customer save(Customer customer)
+    {
+        customerrepos.save(customer);
+        return customerrepos.findByCustname(customer.getCustname());
     }
+
 
     @Override
     public Customer findCustomerByName(String custName) {
@@ -38,13 +35,7 @@ public class CustomerServiceImpl implements CustomerService{
 
     @Override
     public ArrayList<Customer> findAll() {
-        ArrayList<Customer> customers = new ArrayList<>();
-        customerrepos.findAll().iterator().forEachRemaining(customers::add);
-
-        for (Customer c: customers){
-            c.setOrder(orderrepos.findAllByCustomer(c));
-        }
-        return customers;
+        return null;
     }
 
     @Override
@@ -52,6 +43,7 @@ public class CustomerServiceImpl implements CustomerService{
         return null;
     }
 
+    @Transactional
     @Override
     public Customer update(Customer customer, long custCode) {
         return null;
